@@ -26,7 +26,7 @@ public class PatronService {
     public Patron updatePatronDetails(Long id, Patron newPatron){
         Patron oldPatron = this.getPatronDetails(id);
         oldPatron.setName(newPatron.getName());
-        oldPatron.setContactInformation(newPatron.getContactInformation());
+        oldPatron.setPhoneNumber(newPatron.getPhoneNumber());
         return this.patronRepository.save(oldPatron);
     }
 

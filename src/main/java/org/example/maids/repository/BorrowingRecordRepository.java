@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord,Long> {
+    BorrowingRecord findByPatronIdAndBookId(Long patronId, Long bookId);
 }
