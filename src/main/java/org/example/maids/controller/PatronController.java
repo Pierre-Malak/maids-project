@@ -1,5 +1,6 @@
 package org.example.maids.controller;
 
+import jakarta.validation.Valid;
 import org.example.maids.models.Patron;
 import org.example.maids.services.PatronService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class PatronController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Patron addPatronDetails(@RequestBody Patron Patron){
+    public Patron addPatronDetails(@RequestBody @Valid Patron Patron){
         return this.patronService.addPatronDetails(Patron);
     }
 
@@ -34,7 +35,7 @@ public class PatronController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Patron updatePatronById(@PathVariable Long id, @RequestBody Patron Patron){
+    public Patron updatePatronById(@PathVariable Long id, @RequestBody @Valid Patron Patron){
         return this.patronService.updatePatronDetails(id,Patron);
     }
 

@@ -1,7 +1,7 @@
 package org.example.maids.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class BorrowingRecord {
 
         @Id
@@ -22,13 +21,14 @@ public class BorrowingRecord {
         private Long id;
 
         @ManyToOne
-        @JoinColumn(name = "book_id", referencedColumnName = "id")
+        @JoinColumn(name = "book_id")
         private Book book;
 
         @ManyToOne
-        @JoinColumn(name = "patron_id", referencedColumnName = "id")
+        @JoinColumn(name = "patron_id")
         private Patron patron;
 
+        @NotNull(message = "Borrowing date cannot be null")
         private LocalDate borrowingDate;
         private LocalDate returnDate;
 

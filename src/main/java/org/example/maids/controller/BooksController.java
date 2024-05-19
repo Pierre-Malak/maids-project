@@ -1,5 +1,6 @@
 package org.example.maids.controller;
 
+import jakarta.validation.Valid;
 import org.example.maids.models.Book;
 import org.example.maids.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class BooksController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Book addBookDetails(@RequestBody Book book){
+    public Book addBookDetails(@RequestBody @Valid Book book){
         return this.bookService.addBookDetails(book);
     }
 
@@ -32,7 +33,7 @@ public class BooksController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Book updateBookById(@PathVariable Long id, @RequestBody Book book){
+    public Book updateBookById(@PathVariable Long id, @RequestBody @Valid Book book){
         return this.bookService.updateBookDetails(id,book);
     }
 

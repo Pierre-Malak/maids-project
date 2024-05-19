@@ -1,5 +1,6 @@
 package org.example.maids.controller;
 
+import org.example.maids.exceptions.ReturnDateException;
 import org.example.maids.models.BorrowingRecord;
 import org.example.maids.models.Patron;
 import org.example.maids.services.BorrowingRecordService;
@@ -27,7 +28,7 @@ public class BorrowingRecordController {
     @PutMapping(value = "/return/{bookId}/patron/{patronId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public BorrowingRecord addBorrowingReturnTime(@PathVariable Long bookId, @PathVariable Long patronId,
                                                   @RequestParam(name = "returnDate", required = true) LocalDate returnDate,
-                                                  @RequestParam(name = "borrowId", required = true) Long borrowId){
-        return this.borrowingRecordService.addReturnTime(bookId, patronId, returnDate, borrowId);
+                                                  @RequestParam(name = "borrowId", required = true) Long borrowId) throws ReturnDateException {
+        return this.borrowingRecordService.addReturnTime(returnDate, borrowId);
     }
 }
